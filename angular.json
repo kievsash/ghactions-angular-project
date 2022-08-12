@@ -23,6 +23,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "deployUrl": "/ghactions-angular-project/",
             "assets": [
               "src/favicon.ico",
               "src/assets"
