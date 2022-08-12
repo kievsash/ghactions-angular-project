@@ -25,7 +25,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Build
+      - name: Run unit Tests
         run: |
           npm install
           npm run test:ci
@@ -51,8 +51,15 @@ jobs:
         npm install
         npm run build
 
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        folder: dist/ghactions-angular-project # The folder the action should deploy.
+#    - name: Deploy 🚀
+#      uses: JamesIves/github-pages-deploy-action@v4
+#      with:
+#        folder: dist/ghactions-angular-project # The folder the action should deploy.
 
+    - name: Deploy to GitHub Pages
+      uses: Cecilapp/GitHub-Pages-deploy@v3
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        email: kievsash@ukr.net
+        build_dir: dist/ghactions-angular-project
