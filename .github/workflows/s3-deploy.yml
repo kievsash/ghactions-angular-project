@@ -52,20 +52,5 @@ jobs:
 
     - name: Copy deployment package to S3 bucket
       run: aws s3 cp ./dist/ghactions-angular-project s3://${{ env.S3_BUCKET_NAME }} --recursive
-
-
-#  my_s3_deploy_cd:
-#    runs-on: ubuntu-latest
-#    need: [my_s3_deploy_ci]
-#
-#    steps:
-#
-#      - name: Configure AWS creds
-#        uses: aws-actions/configure-aws-credentials@v1
-#        with:
-#          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
-#          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
-#          aws-region: ${{ env.AWS_REGION_NAME }}
-#
-#      - name: Create new ElasticBeanstalk Application
+      # http://my-deployed-s3.s3-website-us-east-1.amazonaws.com/ - but I my shutdown it soon
 

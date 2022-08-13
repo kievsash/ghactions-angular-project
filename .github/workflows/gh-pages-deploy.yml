@@ -45,7 +45,7 @@ jobs:
       uses: actions/upload-pages-artifact@v1
       with:
         path: './dist/ghactions-angular-project'
-    - name: Deploy to GitHub Pages
+    - name: Deploy to GitHub Pages # https://kievsash.github.io/ghactions-angular-project/
       id: deployment
       uses: actions/deploy-pages@main
 
