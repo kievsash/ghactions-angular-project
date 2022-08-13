@@ -1,4 +1,6 @@
-![ghactions-angular-project-github-pages-deploy](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+![ghactions-angular-project-github-pages-deploy](https://github.com/github/docs/actions/workflows/gh-pages-deploy.yml/badge.svg)
+
+[GH Pages Link](https://kievsash.github.io/ghactions-angular-project/)
 
 # GhactionsAngularProject
 
