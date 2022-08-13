@@ -1,3 +1,5 @@
+![ghactions-angular-project-github-pages-deploy](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+
 # GhactionsAngularProject
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.2.

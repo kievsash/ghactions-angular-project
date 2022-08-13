@@ -1,6 +1,6 @@
 # ghactions-angular-project - Test Angular project
 
-name: ghactions-angular-project
+name: ghactions-angular-project-github-pages-deploy
 
 on:
   push:
