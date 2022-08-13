@@ -44,7 +44,8 @@ jobs:
 
     - name: zip-files
       run: |
+        ls -la ./dist/ghactions-angular-project
         zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./dist/ghactions-angular-project/*
-        ls -la ./dist/ghactions-angular-project/
+        ls -la ${{ env.DEPLOY_PACKAGE_NAME }}
 
 
