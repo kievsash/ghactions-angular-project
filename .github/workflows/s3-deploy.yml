@@ -46,12 +46,12 @@ jobs:
     - name: Configure AWS creds
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+        aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }} # you get it while creating aws IAM user with S3Access policy
+        aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }} # same here
         aws-region: ${{ env.AWS_REGION_NAME }}
 
     - name: Copy deployment package to S3 bucket
-      run: aws s3 cp ./dist/ghactions-angular-project/* s3://${{ env.S3_BUCKET_NAME }}
+      run: aws s3 cp ./dist/ghactions-angular-project s3://${{ env.S3_BUCKET_NAME }} --recursive
 
 
 #  my_s3_deploy_cd:
