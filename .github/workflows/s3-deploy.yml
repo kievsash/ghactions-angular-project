@@ -47,9 +47,10 @@ jobs:
         ls -la ./dist/ghactions-angular-project
         zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./dist/ghactions-angular-project
         ls -la ${{ env.DEPLOY_PACKAGE_NAME }}
+        aws version
 
     - name: Configure AWS creds
-      uses: aws-actions/configure-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
