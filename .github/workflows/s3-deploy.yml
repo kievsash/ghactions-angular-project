@@ -17,11 +17,7 @@ permissions:
   id-token: write
 
 jobs:
-  my_deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
+  my_s3_deploy_ci:
     runs-on: ubuntu-latest
 
     strategy:
@@ -44,10 +40,8 @@ jobs:
 
     - name: zip-files
       run: |
-        ls -la ./dist/ghactions-angular-project
         zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./dist/ghactions-angular-project
         ls -la ${{ env.DEPLOY_PACKAGE_NAME }}
-        aws help
 
     - name: Configure AWS creds
       uses: aws-actions/configure-aws-credentials@v1
@@ -57,6 +51,21 @@ jobs:
         aws-region: ${{ env.AWS_REGION_NAME }}
 
     - name: Copy deployment package to S3 bucket
-      run: aws s3 cp ${{ env.DEPLOY_PACKAGE_NAME }} s3://${{ env.S3_BUCKET_NAME }}
+      run: aws s3 cp ./dist/ghactions-angular-project/* s3://${{ env.S3_BUCKET_NAME }}
 
+
+#  my_s3_deploy_cd:
+#    runs-on: ubuntu-latest
+#    need: [my_s3_deploy_ci]
+#
+#    steps:
+#
+#      - name: Configure AWS creds
+#        uses: aws-actions/configure-aws-credentials@v1
+#        with:
+#          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+#          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+#          aws-region: ${{ env.AWS_REGION_NAME }}
+#
+#      - name: Create new ElasticBeanstalk Application
 
