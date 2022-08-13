@@ -1,0 +1,50 @@
+# ghactions-angular-project - Test Angular project
+
+name: ghactions-angular-project-s3-deploy-pipeline
+env:
+  S3_BUCKET_NAME: "my-deployed-s3"
+  APP_NAME: "My angular app"
+  ENVIRONMENT_NAME: "Production"
+  DEPLOY_PACKAGE_NAME: "angular_app_${{ github.sha }}.zip"
+  AWS_REGION_NAME: "us-east-1"
+on:
+  push:
+    branches: [ "master" ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  my_build:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - name: Checkout 🛎️
+      uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Build
+      run: |
+        npm install
+        npm run build
+
+    - name: zip-files
+      run: |
+        ls -la ./dist/ghactions-angular-project/
+        zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./dist/ghactions-angular-project/*
+
+
