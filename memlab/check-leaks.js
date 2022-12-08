@@ -10,7 +10,7 @@ const {setOutput} = require("@actions/core");
 (async function () {
   let oldLeaksData =null;
   try {
-    oldLeaksData = await fs.readFileSync('./my-leaks')
+    oldLeaksData = await fs.readFileSync('./my-leaks', {encoding:'utf8', flag:'r'})
     console.log('From file ', oldLeaksData);
   } catch(e) {
     console.log('No previous leaks check data.');
