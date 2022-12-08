@@ -7,11 +7,22 @@ const {findLeaks, BrowserInteractionResultReader, takeSnapshots, run} = require(
 
 (async function () {
 
+  const old_leaks = parseInt(fs.readFileSync('./my-leaks'));
+
   const result = await takeSnapshots({scenario});
   const leaks = await findLeaks(result);
+
+  console.log('Number of old leaks', old_leaks.length);
   console.log('Number of leaks found', leaks.length);
 
-  fs.writeFileSync('./memlab/leaks-'+Date.now(), leaks.length.toString(), err => {
+  if (old_leaks && old_leaks < leaks.length) {
+    throw new Error('Leaks increase !!! Regression!!');
+  } else {
+    console.log('Number of leaks did not increased.');
+    throw new Error('Leaks is not increased !!! ');
+  }
+
+  fs.writeFileSync('./memlab/my-leaks', leaks.length.toString(), err => {
     if (err) {
       console.error(err);
     }

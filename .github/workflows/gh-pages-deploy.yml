@@ -49,19 +49,19 @@ jobs:
       id: deployment
       uses: actions/deploy-pages@main
 
+    - name: Download artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: my-leaks
+
     - name: Run memlab scenario
       run: node ./memlab/check-leaks.js
 
     - name: Upload memlab results
       uses: actions/upload-artifact@v3
       with:
-        name: my-artifact
-        path: ./memlab/leaks-*
-
-    - name: Download artifacts
-      uses: actions/download-artifact@v3
-      with:
-        name: my-artifact
+        name: my-leaks
+        path: ./memlab/my-leaks
 
     - name: Display structure of downloaded files
       run: ls -R
