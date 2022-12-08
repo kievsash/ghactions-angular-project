@@ -2,10 +2,9 @@
 // memlab run --scenario ./memlab-scenarios/scenario-1.js --work-dir ./results
 // node ./memlab-scenarios/check-leaks.js
 const fs = require('fs');
-const {scenario} = require('./scenario-1.js');
+const scenario = require('./scenario-1.js');
 const {findLeaks, BrowserInteractionResultReader, takeSnapshots, run} = require('@memlab/api');
 const core = require('@actions/core');
-const {setOutput} = require("@actions/core");
 
 (async function () {
   let oldLeaksData =null;

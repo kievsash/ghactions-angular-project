@@ -1,5 +1,4 @@
 
-// const baseUrl = 'http://localhost:4200/ghactions-angular-project/home';
 const baseUrl = 'https://kievsash.github.io/ghactions-angular-project/';
 
 const scenario = {
@@ -26,4 +25,4 @@ const scenario = {
     repeat: () => 1
 };
 
-module.exports = {scenario};
+module.exports = scenario;
