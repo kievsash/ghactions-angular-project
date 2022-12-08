@@ -11,6 +11,7 @@ const {setOutput} = require("@actions/core");
   let oldLeaksData =null;
   try {
     oldLeaksData = fs.readFileSync('./my-leaks')
+    console.log('From file ', oldLeaksData);
   } catch(e) {
     console.log('No previous leaks check data.');
   }

@@ -57,13 +57,18 @@ jobs:
           name: my-leaks
           github_token: ${{ github.token }}
 
+      - name: Check leak file
+        run: |
+          ls -la ./my-leaks
+          cat ./my-leaks
+
       - name: Run memlab scenario and comparing leaks number
         continue-on-error: true
         run: node ./memlab/check-leaks.js
 
       - name: Just display files
         continue-on-error: true
-        run: ls -R && cat ./my-leaks && cat ./memlab/my-leaks
+        run: ls -la ./ && ls -la ./memlab && cat ./my-leaks && cat ./memlab/my-leaks
 
       - name: Upload memlab results
         continue-on-error: true
