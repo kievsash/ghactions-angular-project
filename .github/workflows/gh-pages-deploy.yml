@@ -34,14 +34,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Build
+      - name: Build Angular app
         run: |
           npm install
           npm run build-gh-pages
 
       - name: Setup Pages
         uses: actions/configure-pages@v1
-      - name: Upload artifact
+      - name: Upload new gh-pages bundle from ./dist folder
         uses: actions/upload-pages-artifact@v1
         with:
           path: './dist/ghactions-angular-project'
@@ -49,11 +49,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@main
 
-      - name: run some comment
-        run: |
-          echo ${{ github.token }}
-
-      - name: Download workflow artifact
+      - name: Download previous run number of leaks artifact
         uses: dawidd6/action-download-artifact@master
         with:
           workflow: gh-pages-deploy.yml
@@ -61,13 +57,13 @@ jobs:
           name: my-leaks
           github_token: ${{ github.token }}
 
-      - name: Display structure of downloaded files
-        continue-on-error: true
-        run: ls -R && cat ./my-leaks && cat ./memlab/my-leaks
-
-      - name: Run memlab scenario
+      - name: Run memlab scenario and comparing leaks number
         continue-on-error: true
         run: node ./memlab/check-leaks.js
+
+      - name: Just display files
+        continue-on-error: true
+        run: ls -R && cat ./my-leaks && cat ./memlab/my-leaks
 
       - name: Upload memlab results
         continue-on-error: true
