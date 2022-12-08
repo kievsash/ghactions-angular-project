@@ -26,58 +26,54 @@ jobs:
         node-version: [16.x]
 
     steps:
-    - name: Checkout 🛎️
-      uses: actions/checkout@v3
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: Build
-      run: |
-        npm install
-        npm run build-gh-pages
+      - name: Build
+        run: |
+          npm install
+          npm run build-gh-pages
 
-    - name: Setup Pages
-      uses: actions/configure-pages@v1
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v1
-      with:
-        path: './dist/ghactions-angular-project'
-    - name: Deploy to GitHub Pages # https://kievsash.github.io/ghactions-angular-project/
-      id: deployment
-      uses: actions/deploy-pages@main
+      - name: Setup Pages
+        uses: actions/configure-pages@v1
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: './dist/ghactions-angular-project'
+      - name: Deploy to GitHub Pages # https://kievsash.github.io/ghactions-angular-project/
+        id: deployment
+        uses: actions/deploy-pages@main
 
-    - name: run some comment
-      run: |
-        echo ${{ github.token }}
+      - name: run some comment
+        run: |
+          echo ${{ github.token }}
 
-    - name: Download workflow artifact
-      uses: dawidd6/action-download-artifact@master
-      with:
-        workflow: gh-pages-deploy.yml
-        if_no_artifact_found: warn
-        name: my-leaks
-        github_token: ${{ github.token }}
+      - name: Download workflow artifact
+        uses: dawidd6/action-download-artifact@master
+        with:
+          workflow: gh-pages-deploy.yml
+          if_no_artifact_found: warn
+          name: my-leaks
+          github_token: ${{ github.token }}
 
-#    - name: Download artifacts
-#      continue-on-error: true
-#      uses: actions/download-artifact@v3
-#      with:
-#        name: my-leaks
+      - name: Display structure of downloaded files
+        continue-on-error: true
+        run: ls -R && cat ./my-leaks && cat ./memlab/my-leaks
 
-    - name: Display structure of downloaded files
-      continue-on-error: true
-      run: ls -R && cat ./my-leaks && cat ./memlab/my-leaks
+      - name: Run memlab scenario
+        continue-on-error: true
+        run: node ./memlab/check-leaks.js
 
-    - name: Run memlab scenario
-      run: node ./memlab/check-leaks.js
-
-    - name: Upload memlab results
-      uses: actions/upload-artifact@v3
-      with:
-        name: my-leaks
-        path: ./memlab/my-leaks
+      - name: Upload memlab results
+        continue-on-error: true
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-leaks
+          path: ./memlab/my-leaks
 
 

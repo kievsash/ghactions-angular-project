@@ -5,6 +5,7 @@ const fs = require('fs');
 const {scenario} = require('./scenario-1.js');
 const {findLeaks, BrowserInteractionResultReader, takeSnapshots, run} = require('@memlab/api');
 const core = require('@actions/core');
+const {setOutput} = require("@actions/core");
 
 (async function () {
   let oldLeaksData =null;
@@ -27,7 +28,7 @@ const core = require('@actions/core');
   } else {
     // console.log('Number of leaks did not increased.');
     // throw new Error('Leaks is not increased !!! ');
-    core.setFailed(`Leaks IS NOT increase !!! Regression!!: ${leaks.length}`);
+    core.setOutput(`Leaks number is not increased. Wohoo!: ${leaks.length}`);
   }
 
   fs.writeFileSync('./memlab/my-leaks', leaks.length.toString(), err => {
