@@ -55,7 +55,7 @@ jobs:
         workflow: ghactions-angular-project-github-pages-deploy
         if_no_artifact_found: warn
         name: my-leaks
-        token: ${{ github.token }}
+        github_token: ${{ github.token }}
 
 #    - name: Download artifacts
 #      continue-on-error: true
