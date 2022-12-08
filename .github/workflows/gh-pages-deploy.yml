@@ -64,13 +64,9 @@ jobs:
           memlab run --scenario ./memlab/scenario-1.js
           memlab analyze detached-DOM
 
-      - name: Run memlab scenario and comparing leaks number
+      - name: Run memlab scenario with node and comparing od and current leaks number
         continue-on-error: true
         run: node ./memlab/check-leaks.js
-
-      - name: Just display files
-        continue-on-error: true
-        run: ls -la ./ && ls -la ./memlab && cat ./my-leaks && cat ./memlab/my-leaks
 
       - name: Upload memlab results
         continue-on-error: true
