@@ -50,11 +50,12 @@ jobs:
       uses: actions/deploy-pages@main
 
     - name: Download workflow artifact
-      uses: dawidd6/action-download-artifact@v2.24.2
+      uses: dawidd6/action-download-artifact@master
       with:
         workflow: ghactions-angular-project-github-pages-deploy
         if_no_artifact_found: warn
         name: my-leaks
+        token: ${{ github.token }}
 
 #    - name: Download artifacts
 #      continue-on-error: true
@@ -63,6 +64,7 @@ jobs:
 #        name: my-leaks
 
     - name: Display structure of downloaded files
+      continue-on-error: true
       run: ls -R && cat ./my-leaks && cat ./memlab/my-leaks
 
     - name: Run memlab scenario
