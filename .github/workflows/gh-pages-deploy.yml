@@ -55,6 +55,9 @@ jobs:
       with:
         name: my-leaks
 
+    - name: Display structure of downloaded files
+      run: ls -R && cat ./my-leaks && cat ./memlab/my-leaks
+
     - name: Run memlab scenario
       run: node ./memlab/check-leaks.js
 
@@ -64,5 +67,4 @@ jobs:
         name: my-leaks
         path: ./memlab/my-leaks
 
-    - name: Display structure of downloaded files
-      run: ls -R
+
