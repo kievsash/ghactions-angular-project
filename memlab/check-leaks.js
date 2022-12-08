@@ -15,7 +15,8 @@ const {setOutput} = require("@actions/core");
   } catch(e) {
     console.log('No previous leaks check data.');
   }
-  const old_leaks = parseInt(oldLeaksData);
+  let old_leaks = parseInt(oldLeaksData.trim());
+  console.log('From parseInt ', old_leaks);
 
   const result = await takeSnapshots({scenario});
   const leaks = await findLeaks(result);
