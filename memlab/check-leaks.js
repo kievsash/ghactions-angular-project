@@ -11,17 +11,15 @@ const {setOutput} = require("@actions/core");
   let oldLeaksData =null;
   try {
     oldLeaksData = fs.readFileSync('./my-leaks', {encoding:'utf8', flag:'r'})
-    console.log('From file ', oldLeaksData);
   } catch(e) {
     console.log('No previous leaks check data.');
   }
-  let old_leaks = parseInt(oldLeaksData.trim());
-  console.log('From parseInt ', old_leaks);
+  let old_leaks = oldLeaksData && parseInt(oldLeaksData.trim());
 
   const result = await takeSnapshots({scenario});
   const leaks = await findLeaks(result);
 
-  console.log('Number of old leaks', old_leaks.length);
+  console.log('Number of old leaks', old_leaks);
   console.log('Number of leaks found', leaks.length);
 
   if (old_leaks && old_leaks < leaks.length) {
