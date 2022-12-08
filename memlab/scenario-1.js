@@ -1,6 +1,6 @@
 
-const baseUrl = 'http://localhost:4200/ghactions-angular-project/home';
-// const baseUrl = 'https://kievsash.github.io/ghactions-angular-project/';
+// const baseUrl = 'http://localhost:4200/ghactions-angular-project/home';
+const baseUrl = 'https://kievsash.github.io/ghactions-angular-project/';
 
 const scenario = {
     url: () => `${baseUrl}`,
