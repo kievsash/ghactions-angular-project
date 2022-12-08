@@ -6,8 +6,11 @@ const {scenario} = require('./scenario-1.js');
 const {findLeaks, BrowserInteractionResultReader, takeSnapshots, run} = require('@memlab/api');
 
 (async function () {
-
-  const old_leaks = parseInt(fs.readFileSync('./my-leaks'));
+  let oldLeaksData =null;
+  try {
+    oldLeaksData = fs.readFileSync('./my-leaks')
+  } catch(e) {}
+  const old_leaks = parseInt(oldLeaksData);
 
   const result = await takeSnapshots({scenario});
   const leaks = await findLeaks(result);
