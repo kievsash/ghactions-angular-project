@@ -51,3 +51,9 @@ jobs:
 
     - name: Run memlab scenario
       run: node ./memlab/check-leaks.js
+
+    - name: Upload memlab results
+      uses: actions/upload-artifact@v3
+      with:
+        name: my-artifact
+        path: ./memlab/leaks-*
