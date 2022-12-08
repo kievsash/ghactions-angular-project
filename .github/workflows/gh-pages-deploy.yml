@@ -57,10 +57,12 @@ jobs:
           name: my-leaks
           github_token: ${{ github.token }}
 
-      - name: Check leak file
+      - name: Run memlab scenario with cli
+        continue-on-error: true
         run: |
-          ls -la ./my-leaks
-          cat ./my-leaks
+          npm i -g memlab
+          memlab memlab run --scenario ./memlab/scenario-1.js
+          memlab analyze detached-DOM
 
       - name: Run memlab scenario and comparing leaks number
         continue-on-error: true
