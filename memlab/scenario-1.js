@@ -1,31 +1,29 @@
-const baseUrl = 'https://kievsash.github.io/ghactions-angular-project/';
+
+const baseUrl = 'http://localhost:4200/ghactions-angular-project/home';
+// const baseUrl = 'https://kievsash.github.io/ghactions-angular-project/';
 
 const scenario = {
     url: () => `${baseUrl}`,
     action: async (page) => {
-        await page.click(
-            `drb-nested-cards-container drb-shortcut-card:first-child kirby-card`
-        );
+        await page.click('#leaked');
         // let it render
         await new Promise((resolve) => {
-            setTimeout(() => resolve(), 500);
+            setTimeout(() => resolve(), 100);
         });
-        await page.waitForSelector('kirby-modal-wrapper ion-header ion-buttons button'); // close modal button
+        await page.waitForSelector('.leaked-wrapper');
         // let it render
         await new Promise((resolve) => {
             setTimeout(() => resolve(), 200);
         });
     },
     back: async (page) => {
-        await page.click(
-            `kirby-modal-wrapper ion-header ion-buttons button`
-        );
+      await page.click('#home');
         // let it render
         await new Promise((resolve) => {
             setTimeout(() => resolve(), 200);
         });
     },
-    repeat: () => 5
+    repeat: () => 3
 };
 
-module.exports = scenario;
+module.exports = {scenario};

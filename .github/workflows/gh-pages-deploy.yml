@@ -49,3 +49,5 @@ jobs:
       id: deployment
       uses: actions/deploy-pages@main
 
+    - name: Run memlab scenario
+      run: node ./memlab/check-leaks.js

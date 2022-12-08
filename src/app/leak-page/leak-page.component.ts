@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {interval, Observable, take} from 'rxjs';
 
 @Component({
@@ -8,13 +8,14 @@ import {interval, Observable, take} from 'rxjs';
 })
 export class LeakPageComponent implements OnInit {
 
-  leakedObservable: Observable<number> = interval(100).pipe(take(100));
+  leakedObservable: Observable<number> = interval(100);
   someArr: number[] = [];
   constructor() { }
 
   ngOnInit(): void {
     this.leakedObservable.subscribe((num) => {
       this.someArr.push(num);
+      console.log(num);
     });
   }
 }
