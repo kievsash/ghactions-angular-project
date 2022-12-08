@@ -53,6 +53,8 @@ jobs:
       uses: dawidd6/action-download-artifact@v2.24.2
       with:
         workflow: ghactions-angular-project-github-pages-deploy
+        if_no_artifact_found: warn
+        name: my-leaks
 
 #    - name: Download artifacts
 #      continue-on-error: true
