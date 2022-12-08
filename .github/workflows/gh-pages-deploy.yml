@@ -49,6 +49,10 @@ jobs:
       id: deployment
       uses: actions/deploy-pages@main
 
+    - name: run some comment
+      run: |
+        echo ${{ github.token }}
+
     - name: Download workflow artifact
       uses: dawidd6/action-download-artifact@master
       with:
