@@ -23,7 +23,7 @@ const scenario = {
             setTimeout(() => resolve(), 200);
         });
     },
-    repeat: () => 3
+    repeat: () => 1
 };
 
 module.exports = {scenario};

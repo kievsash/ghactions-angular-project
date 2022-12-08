@@ -10,7 +10,7 @@ const {findLeaks, BrowserInteractionResultReader, takeSnapshots, run} = require(
   const {leaks} = await run({scenario});
   // console.log('Number of leaks found', leaks.length);
 
-  fs.writeFile('./leaks-'+Date.now(), leaks.length, err => {
+  fs.writeFile('./leaks-'+Date.now(), leaks.length.toString(), err => {
     if (err) {
       console.error(err);
     }
