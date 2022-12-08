@@ -4,9 +4,9 @@ name: ghactions-angular-project-github-pages-deploy
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master", "memlab-ci" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "master", "memlab-ci" ]
 
 permissions:
   contents: read
