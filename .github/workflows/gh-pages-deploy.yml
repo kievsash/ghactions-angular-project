@@ -51,7 +51,8 @@ jobs:
 
     - name: Download workflow artifact
       uses: dawidd6/action-download-artifact@v2.24.2
-      workflow: ghactions-angular-project-github-pages-deploy
+      with:
+        workflow: ghactions-angular-project-github-pages-deploy
 
 #    - name: Download artifacts
 #      continue-on-error: true
