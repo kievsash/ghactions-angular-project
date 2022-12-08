@@ -56,7 +56,7 @@ jobs:
     - name: Download workflow artifact
       uses: dawidd6/action-download-artifact@master
       with:
-        workflow: ghactions-angular-project-github-pages-deploy
+        workflow: gh-pages-deploy.yml
         if_no_artifact_found: warn
         name: my-leaks
         github_token: ${{ github.token }}
