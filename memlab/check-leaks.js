@@ -7,10 +7,11 @@ const {findLeaks, BrowserInteractionResultReader, takeSnapshots, run} = require(
 
 (async function () {
 
-  const {leaks} = await run({scenario});
-  // console.log('Number of leaks found', leaks.length);
+  const result = await takeSnapshots({scenario});
+  const leaks = await findLeaks(result);
+  console.log('Number of leaks found', leaks.length);
 
-  fs.writeFile('./leaks-'+Date.now(), leaks.length.toString(), err => {
+  fs.writeFileSync('./memlab/leaks-'+Date.now(), leaks.length.toString(), err => {
     if (err) {
       console.error(err);
     }
