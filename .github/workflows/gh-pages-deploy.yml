@@ -49,11 +49,15 @@ jobs:
       id: deployment
       uses: actions/deploy-pages@main
 
-    - name: Download artifacts
-      continue-on-error: true
-      uses: actions/download-artifact@v3
-      with:
-        name: my-leaks
+    - name: Download workflow artifact
+      uses: dawidd6/action-download-artifact@v2.24.2
+      workflow: ghactions-angular-project-github-pages-deploy
+
+#    - name: Download artifacts
+#      continue-on-error: true
+#      uses: actions/download-artifact@v3
+#      with:
+#        name: my-leaks
 
     - name: Display structure of downloaded files
       run: ls -R && cat ./my-leaks && cat ./memlab/my-leaks
