@@ -61,7 +61,7 @@ jobs:
         continue-on-error: true
         run: |
           npm i -g memlab
-          memlab memlab run --scenario ./memlab/scenario-1.js
+          memlab run --scenario ./memlab/scenario-1.js
           memlab analyze detached-DOM
 
       - name: Run memlab scenario and comparing leaks number
