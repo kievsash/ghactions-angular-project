@@ -50,6 +50,7 @@ jobs:
       uses: actions/deploy-pages@main
 
     - name: Download artifacts
+      continue-on-error: true
       uses: actions/download-artifact@v3
       with:
         name: my-leaks
