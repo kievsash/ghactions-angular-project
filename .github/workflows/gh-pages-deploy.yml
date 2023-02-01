@@ -4,9 +4,9 @@ name: ghactions-angular-project-github-pages-deploy
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "security_audit_ghaction" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "security_audit_ghaction" ]
 
 permissions:
   contents: read
